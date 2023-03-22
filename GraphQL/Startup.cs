@@ -16,7 +16,7 @@ namespace ConferencePlanner.GraphQL
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(
+            services.AddPooledDbContextFactory<ApplicationDbContext>(
                 options => options.UseSqlite("Data Source=conferences.db"));
 
             services
