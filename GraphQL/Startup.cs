@@ -21,7 +21,8 @@ namespace ConferencePlanner.GraphQL
 
             services
                 .AddGraphQLServer()
-                .AddQueryType<Query>();
+                .AddQueryType<Query>()
+                .AddMutationType<Mutation>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
