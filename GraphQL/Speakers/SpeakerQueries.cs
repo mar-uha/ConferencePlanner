@@ -6,7 +6,8 @@ using ConferencePlanner.GraphQL.DataLoader;
 
 namespace ConferencePlanner.GraphQL
 {
-    public class Query
+    [ExtendObjectType("Query")]
+    public class SpeakerQueries
     {
         [UseApplicationDbContext]
         public Task<List<Speaker>> GetSpeakers([ScopedService] ApplicationDbContext context) =>

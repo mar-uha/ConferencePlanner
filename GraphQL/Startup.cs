@@ -24,13 +24,15 @@ namespace ConferencePlanner.GraphQL
 
             services
                 .AddGraphQLServer()
-                .AddQueryType<Query>()
+                .AddQueryType(d => d.Name("Query"))
+                    .AddTypeExtension<SpeakerQueries>()
                 .AddMutationType(d => d.Name("Mutation"))
                     .AddTypeExtension<SpeakerMutations>()
+                .AddType<AttendeeType>()
+                .AddType<SessionType>()
                 .AddType<SpeakerType>()
-                .EnableRelaySupport()
-                .AddDataLoader<SpeakerByIdDataLoader>()
-                .AddDataLoader<SessionByIdDataLoader>();
+                .AddType<TrackType>()
+                .EnableRelaySupport();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
