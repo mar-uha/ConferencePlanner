@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ConferencePlanner.GraphQL.Data;
+using ConferencePlanner.GraphQL.DataLoader;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +23,8 @@ namespace ConferencePlanner.GraphQL
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddMutationType<Mutation>();
+                .AddMutationType<Mutation>()
+                .AddDataLoader<SpeakerByIdDataLoader>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
