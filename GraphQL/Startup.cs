@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
+using ConferencePlanner.GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,9 @@ namespace ConferencePlanner.GraphQL
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
-                .AddDataLoader<SpeakerByIdDataLoader>();
+                .AddType<SpeakerType>()
+                .AddDataLoader<SpeakerByIdDataLoader>()
+                .AddDataLoader<SessionByIdDataLoader>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
