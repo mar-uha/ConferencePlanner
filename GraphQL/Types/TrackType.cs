@@ -15,10 +15,11 @@ namespace ConferencePlanner.GraphQL.Types
     {
         protected override void Configure(IObjectTypeDescriptor<Track> descriptor)
         {
+            /* replace by UseUpperCaseAttribute
             descriptor
                 .Field(t => t.Name)
                 .UseUpperCase();
-
+            */
             descriptor
                 .ImplementsNode()
                 .IdField(t => t.Id)
