@@ -38,7 +38,11 @@ namespace ConferencePlanner.GraphQL
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
                 .AddType<TrackType>()
-                .EnableRelaySupport();
+                .EnableRelaySupport()
+                .AddFiltering()
+                .AddSorting()
+                .AddDataLoader<SpeakerByIdDataLoader>()
+                .AddDataLoader<SessionByIdDataLoader>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
