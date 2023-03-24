@@ -37,6 +37,9 @@ namespace ConferencePlanner.GraphQL
                     .AddTypeExtension<SessionMutations>()
                     .AddTypeExtension<SpeakerMutations>()
                     .AddTypeExtension<TrackMutations>()
+                .AddSubscriptionType(d => d.Name("Subscription"))
+                    .AddTypeExtension<AttendeeSubscriptions>()
+                    .AddTypeExtension<SessionSubscriptions>()
                 .AddType<AttendeeType>()
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
@@ -44,6 +47,7 @@ namespace ConferencePlanner.GraphQL
                 .EnableRelaySupport()
                 .AddFiltering()
                 .AddSorting()
+                .AddInMemorySubscriptions()
                 .AddDataLoader<SpeakerByIdDataLoader>()
                 .AddDataLoader<SessionByIdDataLoader>();
         }
@@ -55,6 +59,7 @@ namespace ConferencePlanner.GraphQL
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWebSockets();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
