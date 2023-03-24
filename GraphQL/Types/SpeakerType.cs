@@ -30,8 +30,8 @@ namespace ConferencePlanner.GraphQL.Types
         private class SpeakerResolvers
         {
             public async Task<IEnumerable<Session>> GetSessionsAsync(
-                Speaker speaker,
-                [ScopedService] ApplicationDbContext dbContext,
+                [Parent]Speaker speaker,
+                [ScopedService]ApplicationDbContext dbContext,
                 SessionByIdDataLoader sessionById,
                 CancellationToken cancellationToken)
             {
@@ -39,7 +39,7 @@ namespace ConferencePlanner.GraphQL.Types
                     .Where(s => s.Id == speaker.Id)
                     .Include(s => s.SessionSpeakers)
                     .SelectMany(s => s.SessionSpeakers.Select(t => t.SessionId))
-                    .ToArrayAsync();
+                    .ToArrayAsync(cancellationToken);
 
                 return await sessionById.LoadAsync(sessionIds, cancellationToken);
             }
