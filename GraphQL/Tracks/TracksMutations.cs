@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
 using HotChocolate;
 using HotChocolate.Types;
@@ -29,7 +30,17 @@ namespace ConferencePlanner.GraphQL.Tracks
             ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
-            Track track = await context.Tracks.FindAsync(input.Id);
+            Track? track = await context.Tracks.FindAsync(input.Id);
+            
+            if (track is null)
+            {
+                return new RenameTrackPayload(
+                    new List<UserError>
+                    {
+                        new UserError("Track not found.", "TRACK_NOT_FOUND")
+                    });
+            }
+            
             track.Name = input.Name;
 
             await context.SaveChangesAsync(cancellationToken);

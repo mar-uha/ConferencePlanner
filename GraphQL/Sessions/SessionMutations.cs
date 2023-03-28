@@ -23,7 +23,7 @@ namespace ConferencePlanner.GraphQL.Sessions
                     new UserError("endTime has to be larger than startTime.", "END_TIME_INVALID"));
             }
 
-            Session session = await context.Sessions.FindAsync(input.SessionId);
+            Session? session = await context.Sessions.FindAsync(input.SessionId);
 
             if (session is null)
             {
