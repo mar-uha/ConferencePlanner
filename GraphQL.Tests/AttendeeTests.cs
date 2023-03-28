@@ -13,6 +13,7 @@ using HotChocolate;
 using HotChocolate.Execution;
 using Snapshooter.Xunit;
 using Xunit;
+using HotChocolate.Data;
 
 namespace GraphQL.Tests
 {
@@ -27,6 +28,7 @@ namespace GraphQL.Tests
                 .AddPooledDbContextFactory<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
+                .RegisterDbContext<ApplicationDbContext>(DbContextKind.Pooled)
                 .AddQueryType(d => d.Name("Query"))
                     .AddTypeExtension<AttendeeQueries>()
                 .AddMutationType(d => d.Name("Mutation"))
@@ -35,7 +37,7 @@ namespace GraphQL.Tests
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
                 .AddType<TrackType>()
-                .EnableRelaySupport()
+                .AddGlobalObjectIdentification()
                 .BuildSchemaAsync();
 
             // assert
@@ -50,6 +52,7 @@ namespace GraphQL.Tests
                 .AddPooledDbContextFactory<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
+                .RegisterDbContext<ApplicationDbContext>(DbContextKind.Pooled)
                 .AddQueryType(d => d.Name("Query"))
                     .AddTypeExtension<AttendeeQueries>()
                 .AddMutationType(d => d.Name("Mutation"))
@@ -58,7 +61,7 @@ namespace GraphQL.Tests
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
                 .AddType<TrackType>()
-                .EnableRelaySupport()
+                //.EnableRelaySupport()
                 .BuildRequestExecutorAsync();
 
             // act

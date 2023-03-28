@@ -10,7 +10,7 @@ using HotChocolate.Types.Relay;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
-    [ExtendObjectType(Name = "Subscription")]
+    [ExtendObjectType("Subscription")]
     public class AttendeeSubscriptions
     {
         [Subscribe(With = nameof(SubscribeToOnAttendeeCheckedInAsync))]

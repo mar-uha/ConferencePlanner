@@ -14,7 +14,7 @@ namespace ConferencePlanner.GraphQL.Sessions
         [UseApplicationDbContext]
         public async Task<ScheduleSessionPayload> ScheduleSessionAsync(
             ScheduleSessionInput input,
-            [ScopedService] ApplicationDbContext context,
+            ApplicationDbContext context,
             [Service] ITopicEventSender eventSender)
         {
             if (input.EndTime < input.StartTime)
@@ -47,7 +47,7 @@ namespace ConferencePlanner.GraphQL.Sessions
         [UseApplicationDbContext]
         public async Task<AddSessionPayload> AddSessionAsync(
             AddSessionInput input,
-            [ScopedService] ApplicationDbContext context,
+            ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(input.Title))

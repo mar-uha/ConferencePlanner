@@ -25,7 +25,7 @@ namespace ConferencePlanner.GraphQL.Attendees
 
         [UseApplicationDbContext]
         public async Task<int> CheckInCountAsync(
-            [ScopedService] ApplicationDbContext context,
+            ApplicationDbContext context,
             CancellationToken cancellationToken) =>
             await context.Sessions
                 .Where(session => session.Id == SessionId)

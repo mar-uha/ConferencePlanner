@@ -27,6 +27,7 @@ namespace ConferencePlanner.GraphQL
 
             services
                 .AddGraphQLServer()
+                .RegisterDbContext<ApplicationDbContext>(DbContextKind.Pooled)
                 .AddQueryType(d => d.Name("Query"))
                     .AddTypeExtension<AttendeeQueries>()
                     .AddTypeExtension<SessionQueries>()
@@ -44,7 +45,7 @@ namespace ConferencePlanner.GraphQL
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
                 .AddType<TrackType>()
-                .EnableRelaySupport()
+                .AddGlobalObjectIdentification()
                 .AddFiltering()
                 .AddSorting()
                 .AddInMemorySubscriptions()

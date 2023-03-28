@@ -19,7 +19,7 @@ namespace ConferencePlanner.GraphQL.Sessions
         [UseFiltering(typeof(SessionFilterInputType))]
         [UseSorting]
         public async Task<IEnumerable<Session>> GetSessions(
-            [ScopedService] ApplicationDbContext context,
+            ApplicationDbContext context,
             CancellationToken cancellationToken) =>
             await context.Sessions.ToListAsync(cancellationToken);
 

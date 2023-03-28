@@ -12,7 +12,7 @@ namespace ConferencePlanner.GraphQL
         [UseApplicationDbContext]
         [UsePaging]
         public Task<List<Speaker>> GetSpeakers(
-            [ScopedService] ApplicationDbContext context) =>
+            ApplicationDbContext context) =>
             context.Speakers.OrderBy(t => t.Name).ToListAsync();
 
         public Task<Speaker> GetSpeakerByIdAsync(
