@@ -1,3 +1,4 @@
 # ConferencePlanner
 
-Getting started with GraphQL on ASP.NET Core and Hot Chocolate - Workshop https://github.com/ChilliCream/graphql-workshop
+C#, .net core, GraphQL project.
+Based on the workshop "Getting started with GraphQL on ASP.NET Core and Hot Chocolate" https://github.com/ChilliCream/graphql-workshop
